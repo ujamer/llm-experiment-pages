@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiment Index</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8fafc;
+      color: #111827;
+    }
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    .search-box {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    th, td {
+      text-align: left;
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    th {
+      background-color: #f1f5f9;
+      font-weight: 600;
+    }
+    tr:hover {
+      background-color: #f9fafb;
+    }
+    .tag {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      padding: 0.25rem 0.5rem;
+      margin-right: 0.5rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LLM Experiment Index</h1>
+    <p>A searchable directory of all experiments</p>
+  </header>
+
+  <main>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search experiments..." onkeyup="filterTable()" />
+    </div>
+
+    <table id="experimentTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="llama3-2-sample-knowledge-corpus-clusters.html">Llama3.2 Sample Corpus Clusters</a></td>
+          <td>2025-06-01</td>
+          <td>
+            <span class="tag">embedding</span>
+            <span class="tag">UMAP</span>
+            <span class="tag">HDBSCAN</span>
+          </td>
+        </tr>
+        <!-- Add more experiment rows here -->
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    function filterTable() {
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toLowerCase();
+      const table = document.getElementById("experimentTable");
+      const tr = table.getElementsByTagName("tr");
+
+      for (let i = 1; i < tr.length; i++) {
+        const rowText = tr[i].textContent.toLowerCase();
+        tr[i].style.display = rowText.includes(filter) ? "" : "none";
+      }
+    }
+  </script>
+</body>
+</html>
